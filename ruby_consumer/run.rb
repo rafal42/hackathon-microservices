@@ -4,7 +4,8 @@ connection = Bunny.new('amqp://guest:guest@rabbit:5672')
 connection.start
 
 channel = connection.create_channel
-queue = channel.queue(ARGV.first)
+queue_name, consumer_id = ARGV
+queue = channel.queue(queue_name)
 
 begin
   File.open('logs/logfile.log', 'a') do |file|
@@ -12,7 +13,7 @@ begin
   end
   queue.subscribe(block: true) do |_delivery_info, _properties, body|
     File.open('logs/logfile.log', 'a') do |file|
-      file << "[x] Received #{body}\n"
+      file << "[x] [Consumer #{consumer_id}/#{queue_name}] received #{body}\n"
     end
   end
 rescue Interrupt => _
