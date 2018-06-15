@@ -1,0 +1,17 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    amq-protocol (2.3.0)
+    bunny (2.10.0)
+      amq-protocol (~> 2.3.0)
+    rack (2.0.5)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  bunny
+  rack
+
+BUNDLED WITH
+   1.16.1
