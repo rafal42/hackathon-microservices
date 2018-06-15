@@ -7,4 +7,4 @@ WORKDIR app
 
 RUN bundle install
 
-#CMD ["ruby", "run.rb", "queue_name"]
+CMD ["ruby", "run.rb", "default_queue"]

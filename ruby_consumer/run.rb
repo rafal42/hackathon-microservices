@@ -7,9 +7,13 @@ channel = connection.create_channel
 queue = channel.queue(ARGV.first)
 
 begin
-  puts ' [*] Waiting for messages. To exit press CTRL+C'
+  File.open('logs/logfile.log', 'a') do |file|
+    file << "[*] Waiting for messages.\n"
+  end
   queue.subscribe(block: true) do |_delivery_info, _properties, body|
-    puts " [x] Received #{body}"
+    File.open('logs/logfile.log', 'a') do |file|
+      file << "[x] Received #{body}\n"
+    end
   end
 rescue Interrupt => _
   connection.close

@@ -19,3 +19,7 @@ post '/process_task' do
 
   { 'status' => 201, 'queue_name' => queue.name }.to_json
 end
+
+get '/logs' do
+  File.read('logs/logfile.log')
+end
