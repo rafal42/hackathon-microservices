@@ -1,6 +1,6 @@
 require 'bunny'
 
-connection = Bunny.new('amqp://guest:guest@my-rabbit:5672')
+connection = Bunny.new('amqp://guest:guest@rabbit:5672')
 connection.start
 
 channel = connection.create_channel

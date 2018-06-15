@@ -7,7 +7,7 @@ configure do
 end
 
 post '/process_task' do
-  connection = Bunny.new('amqp://guest:guest@0.0.0.0:5672')
+  connection = Bunny.new('amqp://guest:guest@rabbit:5672').start
   connection.start
 
   channel = connection.create_channel
@@ -17,5 +17,5 @@ post '/process_task' do
   channel.default_exchange.publish(data['message'], routing_key: queue.name)
   connection.close
 
-  { status: 201, queue_name: queue.name }
+  { 'status' => 201, 'queue_name' => queue.name }.to_json
 end
