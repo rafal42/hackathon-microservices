@@ -1,5 +1,3 @@
-
-require'pry'
 consumer_id = 0
 queues = %w[queue_1 queue_2 queue_3 queue_4 queue_5]
 
